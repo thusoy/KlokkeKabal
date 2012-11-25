@@ -50,13 +50,14 @@ def record_result(win=False):
     stats['plays'] += 1
 
 def print_results():
-    runtime = time.clock() - stats['starttime']
-    print('Number of plays : {}'.format(stats['plays']))
-    print('Number of wins  : {}'.format(stats['wins']))
-    print('Number of losses: {}'.format(stats['losses']))
-    percentage = float(stats['wins'])/stats['plays']
-    print('Win percentage  : {:.2%}'.format(percentage))
-    print('Simulation time : {:.2f}s'.format(runtime))
+    with open('results.txt', 'w') as results:
+        runtime = time.clock() - stats['starttime']
+        results.write('Number of plays : {}\n'.format(stats['plays']))
+        results.write('Number of wins  : {}\n'.format(stats['wins']))
+        results.write('Number of losses: {}\n'.format(stats['losses']))
+        percentage = float(stats['wins'])/stats['plays']
+        results.write('Win percentage  : {:.2%}\n'.format(percentage))
+        results.write('Simulation time : {:.2f}s\n'.format(runtime))
 
 if __name__ == '__main__':
     init()
